@@ -53,6 +53,26 @@ npm init -y
    ]
  }
 
-12. 
+12. 安装 webpack 和 webpack-cli 命令
+    npm install webpack webpack-cli -D
+
+13. 在文件夹下创建config文件夹并创建 constant.js文件 定义公用变量
+
+14. 在 package.json 的 script 中加入命令:   "build": "webpack --config ./webpack.common.js"
+
+15. 安装webpack-merge 区分开发、生产环境
+    npm install webpack-merge -D
+
+16. 创建webpack.dev.js   webpack.prod.js 配置开发、生产环境变量
+
+17. 使用 cross-env 在公共配置文件中进行区分开发和生产环境
+    - npm install cross-env -D
+    - package.json 中的 script 中修改代码
+        "start": "cross-env NODE_ENV=development webpack --config ./scripts/config/webpack.dev.js",
+        "build": "cross-env NODE_ENV=production webpack --config ./scripts/config/webpack.prod.js"\
+
+18. devtool 增加报错信息,在 webpack.dev.js 加入代码:  devtool: 'cheap-module-source-map'
+
+
 
 
