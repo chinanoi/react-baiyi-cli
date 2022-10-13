@@ -68,10 +68,32 @@ npm init -y
 17. 使用 cross-env 在公共配置文件中进行区分开发和生产环境
     - npm install cross-env -D
     - package.json 中的 script 中修改代码
-        "start": "cross-env NODE_ENV=development webpack --config ./scripts/config/webpack.dev.js",
-        "build": "cross-env NODE_ENV=production webpack --config ./scripts/config/webpack.prod.js"\
+        "start": "cross-env NODE_ENV=development webpack --config ./webpack.dev.js",
+        "build": "cross-env NODE_ENV=production webpack --config ./webpack.prod.js"
 
-18. devtool 增加报错信息,在 webpack.dev.js 加入代码:  devtool: 'cheap-module-source-map'
+    - 在 webpack.common.js 中修改 output，hash 值生产环境缓存的时候需要用到，开发环境不需要
+        filename: `js/[name]${isDev ? ' ' : '.[hash:8]'}.js`,
+
+18. devtool 增加报错信息,在 webpack.dev.js 加入代码:  devtool: 'cheap-module-source-map'。不需要的生产环境设置为false
+
+19. 本地开发,npm run start查看实时运行页面
+    - html-webpack-plugin 将打包完的 js 文件自动引入 html 文件
+    - webpack-dev-server 本地起一个 http 服务，通过简单的配置还可指定其端口、热更新的开启等
+    npm install webpack-dev-server html-webpack-plugin -D
+
+    - 根目录下新建public文件夹，文件夹中新建index.html文件
+
+20. webpack.dev.js 添加配置  
+    devServer: {
+        host: SERVER_HOST, // 指定 host，不设置的话默认是 localhost
+        port: SERVER_PORT, // 指定端口，默认是8080
+        compress: true, // 是否启用 gzip 压缩
+        open: true, // 打开默认浏览器
+        hot: true, // 热更新
+    },
+
+21. 利用 clean-webpack-plugin 插件，每次 npm run build 打包编译清除 dist 文件夹
+
 
 
 
