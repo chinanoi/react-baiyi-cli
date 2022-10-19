@@ -93,6 +93,161 @@ npm init -y
     },
 
 21. 利用 clean-webpack-plugin 插件，每次 npm run build 打包编译清除 dist 文件夹
+    npm install clean-webpack-plugin -D
+    在webpack.prod.js中加入   
+    ```
+        plugins: [
+        new CleanWebpackPlugin(),
+    ],
+    ```
+22. loader：安装 style-loader 和 css-loader，进行 css 样式处理
+
+    npm install style-loader css-loader -D
+
+    在webpack.common.js中添加
+    ```
+       module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                        modules: false, // 默认就是 false
+                        sourceMap: isDev, // 开启后与 devtool 设置一致, 开发环境开启，生产环境关闭
+                        importLoaders: 0, // 指定在 CSS loader 处理前使用的 laoder 数量
+                        },
+                        },
+                    ],
+                },
+            ],
+        },
+  ```
+23. 安装 less 和 less-loader，处理 less 文件:    npm install less less-loader -D
+```
+ {
+    test: /\.less$/,
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          modules: false,
+          sourceMap: isDev,
+          importLoaders: 1, // 需要先被 less-loader 处理，所以这里设置为 1
+        },
+      },
+      {
+        loader: 'less-loader',
+        options: {
+          sourceMap: isDev,
+        },
+      },
+    ],
+  },
+```
+24. 安装 node-sass 和 sass-loader 处理 scss 文件:   npm install node-sass sass-loader -D
+```
+   {
+    test: /\.scss$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: false,
+            sourceMap: isDev,
+            importLoaders: 1, // 需要先被 sass-loader 处理，所以这里设置为 1
+          },
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: isDev,
+          },
+        },
+      ],
+    },
+```
+
+25. file-loader 或者 url-loader 处理本地资源文件:  npm install file-loader url-loader -D
+```
+  {
+     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+     use: [
+       {
+         loader: 'url-loader',
+         options: {
+           limit: 10 * 1024,
+           name: '[name].[contenthash:8].[ext]',
+           outputPath: 'assets/images',
+         },
+       },
+     ],
+   },
+   {
+     test: /\.(ttf|woff|woff2|eot|otf)$/,
+     use: [
+       {
+         loader: 'url-loader',
+         options: {
+           name: '[name].[contenthash:8].[ext]',
+          outputPath: 'assets/fonts',
+        },
+      },
+    ],
+  },
+```
+
+26. 支持 react 和 typescript：  npm install react react-dom -S
+
+27. 安装 babel-loader 识别语法，不然报错:  npm install babel-loader @babel/core @babel/preset-react -D
+
+28. 支持 ts 的安装命令:  npm install @babel/preset-typescript -D
+
+29. 根目录新建 .babelrc 文件
+
+30. 在 webpack.common.js 中增加 resolve 属性，webpack 会先尝试加上 .tsx 后缀，看找得到文件不，如果找不到就依次尝试进行查找，所以我们在配置时尽量把最常用到的后缀放到最前面，可以缩短查找时间.
+添加alias：配置路径简写
+
+31.  react 的类型声明，安装命令: npm install @types/react @types/react-dom -D
+
+32. 根目录创建 tsconfig.json 文件
+
+33. babel配置：@babel/preset-env 据设置的目标浏览器环境找出所需的插件去转译 ES6+ 语法
+  npm install @babel/preset-env -D
+
+  @babel/plugin-transform-runtime 解决一些新特性，比如 includes：  
+    npm install @babel/plugin-transform-runtime -D
+    npm install @babel/runtime-corejs3 -S
+
+    /**
+        其中 @babel/plugin-transform-runtime 的作用是转译代码，转译后的代码中可能会引入 @babel/runtime-corejs3 里面的模块。所以前者运行在编译时，后者运行在运行时。类似 polyfill，后者需要被打包到最终产物里在浏览器中运行
+    **/
+
+34. npm run build 的时候 dist 文件夹中生成图片，安装 copy-webpack-plugin 插件:  npm install copy-webpack-plugin -D
+
+35. start 或者 build 的时候显示编译进度:  npm install webpackbar -D
+
+36. 代码热更新:
+```
+  const webpack = require('webpack');
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+```
+37. 安装 @types/webpack-env:  npm install @types/webpack-env -D
+
+38. 抽离 css 单独打包并且去除无用 css 代码:  npm install mini-css-extract-plugin -D
+    purgecss-webpack-plugin 去除无用样式:  npm install purgecss-webpack-plugin glob -D
+
+39. 压缩 js 代码:  npm install terser-webpack-plugin -D
+    压缩 css 代码:  npm install css-minimizer-webpack-plugin -D
+
+
+
+
+
 
 
 
