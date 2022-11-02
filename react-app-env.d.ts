@@ -28,7 +28,6 @@ declare module '*.png' {
     export default path;
 }
 
-declare module 'react' {
-    const path: string;
-    export default path;
-}
+declare module 'react';
+
+declare module 'react-dom';

@@ -244,6 +244,8 @@ npm init -y
 39. 压缩 js 代码:  npm install terser-webpack-plugin -D
     压缩 css 代码:  npm install css-minimizer-webpack-plugin -D
 
+40. 添加react-router-dom 使用V6+
+
 
 
 

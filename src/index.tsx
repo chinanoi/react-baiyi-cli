@@ -7,4 +7,4 @@ if (module && module.hot) {
     module.hot.accept();
 }
 
-ReactDOM.render(<App name="baiyi" />, document.querySelector('#root'));
+ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, document.querySelector('#root'));
