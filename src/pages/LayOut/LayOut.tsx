@@ -1,12 +1,22 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import './LayOut.less';
+import { globalState, increment, decrement } from 'Src/app/globalReducer';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Home = () => {
+const LayOut = () => {
+    const { count } = useSelector(globalState);
+    const dispatch = useDispatch();
+
     return (
         <div className="homeBox">
             <div className="header">
                 这是一个脚手架
+            </div>
+            <div>
+                这是redux的count：{count}
+                <button onClick={() => { dispatch(increment()); }}>count++</button>
+                <button onClick={() => { dispatch(decrement()); }}>count--</button>
             </div>
             <div className="leftBox">
                 <Link to="/">Home</Link>
@@ -24,4 +34,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default LayOut;

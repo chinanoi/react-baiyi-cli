@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Introduce = () => {
+const Home = () => {
     return (
         <div className="Introduce">
-            Introduce
+            默认首页展示内容-Introduce
         </div>
     );
 };
 
-export default Introduce;
+export default Home;
