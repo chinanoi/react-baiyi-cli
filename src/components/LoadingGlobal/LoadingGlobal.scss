@@ -1,0 +1,93 @@
+$width: 64px;
+$height: 64px;
+$dotWidth: 10px;
+$dotHeight: 10px;
+$radius: 5px;
+$offset: 9.37px;
+@function getLeft( $x) {
+    @return ($width/4)*$x;
+}
+
+@function getTop( $y) {
+    @return ($height/4)*$y;
+}
+
+@keyframes changeOpacity {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: .2;
+    }
+}
+
+.LoadingGlobal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .5);
+    .loadingContent {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: $width;
+        height: $height;
+        z-index: 2;
+    }
+    .dot {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        background-color: #1677ff;
+        border-radius: 50% 50%;
+        opacity: 1;
+        animation: changeOpacity 1.04s ease infinite;
+    }
+    .dot1 {
+        left: 0;
+        top: 50%;
+        margin-top: -$radius;
+        animation-delay: 0.13s;
+    }
+    .dot2 {
+        left: $offset;
+        top: $offset;
+        animation-delay: 0.26s;
+    }
+    .dot3 {
+        left: 50%;
+        top: 0;
+        margin-left: -$radius;
+        animation-delay: 0.39s;
+    }
+    .dot4 {
+        top: $offset;
+        right: $offset;
+        animation-delay: 0.52s;
+    }
+    .dot5 {
+        right: 0;
+        top: 50%;
+        margin-top: -$radius;
+        animation-delay: 0.65s;
+    }
+    .dot6 {
+        right: $offset;
+        bottom: $offset;
+        animation-delay: 0.78s;
+    }
+    .dot7 {
+        bottom: 0;
+        left: 50%;
+        margin-left: -$radius;
+        animation-delay: 0.91s;
+    }
+    .dot8 {
+        bottom: $offset;
+        left: $offset;
+        animation-delay: 1.04s;
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import './About.less';
+import { Link } from 'react-router-dom';
+import './About.scss';
 
 const About = () => {
     return (
