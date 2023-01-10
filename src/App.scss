@@ -1,4 +1,19 @@
 .homeLayOut {
     height: 100vh;
     width: 100%;
+    overflow: hidden;
+    .logo {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        img {
+            margin: 0 16px;
+            width: 32px;
+            height: 32px;
+        }
+        .logoText {
+            color: #fff;
+            font-size: 18px;
+        }
+    }
 }

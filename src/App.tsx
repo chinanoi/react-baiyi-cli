@@ -2,6 +2,7 @@ import React from 'react';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu } from 'antd';
+import Logo from './assets/images/bq.jpg';
 import './App.scss';
 
 const { Header, Content, Sider } = Layout;
@@ -28,10 +29,17 @@ function App() {
         },
     );
 
+    console.log('items2', items2);
+
     return (
         <Layout className="homeLayOut">
             <Sider width={200} className="site-layout-background">
+                <div className="logo">
+                    <img src={Logo} alt="" />
+                    <span className="logoText">Management</span>
+                </div>
                 <Menu
+                    theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
                     defaultOpenKeys={['sub1']}
@@ -56,7 +64,7 @@ function App() {
                     Content
                 </Content>
             </Layout>
-        </Layout>
+        </Layout >
     );
 }
 
