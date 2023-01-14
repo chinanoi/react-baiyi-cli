@@ -6,6 +6,7 @@ import About from './pages/About';
 import AboutEdit from './pages/About/AboutEdit';
 import AboutAdd from './pages/About/AboutAdd';
 import Project from './pages/Project';
+import Another from './pages/Another';
 
 const router = createBrowserRouter([
     {
@@ -34,7 +35,10 @@ const router = createBrowserRouter([
             },
         ],
     },
-
+    {
+        path: 'another',
+        element: <Another />
+    }
 ]);
 
 function App() {

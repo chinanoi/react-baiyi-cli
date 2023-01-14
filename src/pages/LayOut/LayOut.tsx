@@ -22,6 +22,7 @@ const LayOut = () => {
                 <Link to="/">Home</Link>
                 <Link to="/about">About</Link>
                 <Link to="/project">project</Link>
+                <Link to="/another">Another</Link>
             </div>
             <div>
                 分割线
