@@ -246,7 +246,7 @@ npm init -y
 
 40. 添加react-router-dom 使用V6+
 
-
+41. fork-ts-checker-webpack-plugin   编译时候ts校验插件
 
 
 

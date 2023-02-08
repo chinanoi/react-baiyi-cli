@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import './LayOut.scss';
+import styles from './LayOut.module.scss';
 import { globalState, increment, decrement } from 'Src/app/globalReducer';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -9,7 +9,7 @@ const LayOut = () => {
     const dispatch = useDispatch();
 
     return (
-        <div className="homeBox">
+        <div className={styles.layoutBox}>
             <div className="header">
                 这是一个脚手架
             </div>
