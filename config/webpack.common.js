@@ -26,13 +26,12 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.css$/,
-                exclude: /node_modules/,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
-                            modules: true, // css-module 默认是 false
+                            modules: false, // css-module 默认是 false
                             sourceMap: isDev, // 开启后与 devtool 设置一致, 开发环境开启，生产环境关闭
                         },
                     },
@@ -65,6 +64,7 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
+                            modules: true,
                             sourceMap: isDev,
                             importLoaders: 1, // 需要先被 sass-loader 处理，所以这里设置为 1
                         },
