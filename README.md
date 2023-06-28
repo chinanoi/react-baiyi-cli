@@ -27,7 +27,7 @@ npm init -y
             What format do you want your config file to be in? · JavaScript
             Would you like to install them now? · Yes
             Which package manager do you want to use? · npm
-    - 提前安装npm install typescript -D  避免报错
+    - 提前安装npm install typescript -D 以及 npm install --save-dev @types/node  避免报错
 
 8. 创建.eslintignore文件 忽略某些文件夹
 
@@ -92,8 +92,8 @@ npm init -y
         hot: true, // 热更新
     },
 
-21. 利用 clean-webpack-plugin 插件，每次 npm run build 打包编译清除 dist 文件夹
-    npm install clean-webpack-plugin -D
+21. ~~利用 clean-webpack-plugin 插件，每次 npm run build 打包编译清除 dist 文件夹~~
+    ~~npm install clean-webpack-plugin -D~~
     在webpack.prod.js中加入   
     ```
         plugins: [
@@ -172,6 +172,8 @@ npm init -y
     },
 ```
 
+使用oneOf优化loader执行
+
 25. file-loader 或者 url-loader 处理本地资源文件:  npm install file-loader url-loader -D
 ```
   {
@@ -201,9 +203,48 @@ npm init -y
   },
 ```
 
+webpack5中：file-loader 和 url-loader 功能被 asset modules 取代。asset modules 是一个内置的模块类型，用于处理资源文件，包括图片、字体等。
+
+```
+module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: 'asset/resource',
+      },
+      // 其他模块规则...
+    ],
+  },
+
+```
+
 26. 支持 react 和 typescript：  npm install react react-dom -S
 
 27. 安装 babel-loader 识别语法，不然报错:  npm install babel-loader @babel/core @babel/preset-react -D
+webpack4:  babel缓存、优化loaders:
+```
+module: {
+  // 1. 限制生效范围可以避免大量的无用转义资源消耗
+  rules: [{
+    // js文件才会使用babel进行转换  限制了转义的文件类型
+    test: /\.js$/,
+    loader: 'babel-loader',
+    // 只在src文件夹下进行查找转换   ==>  限制了转义的文件
+    include: [resolve('src')],
+    // 不会去转义的路径，限制了查找的范围
+    exclude: /node_modules/
+  }]
+  // 2. 缓存
+  loader: 'babel-loader?cacheDirectory=true' // webpack5中，Babel 将自动利用 Webpack 的缓存机制，无需额外配
+}
+```
+webpack5中：
+引入了新的持久化缓存功能，通过 cache.type 配置项来启用。具体包括两种类型：'memory' 和 'filesystem'。
+- 当设置 cache.type: 'memory'（默认值）时，Webpack 将使用内存缓存来加速构建过程。这种方式适用于小型项目或者构建过程中占用内存较少的情况。
+
+- 而当设置 cache.type: 'filesystem' 时，Webpack 将使用文件系统缓存来加速构建过程。这种方式适用于大型项目或者构建过程中使用了很多内存的情况。
+
+注：使用文件系统缓存可能会占用磁盘空间，并且在某些情况下可能会导致缓存失效。因此，在特定项目中，您可以根据实际需求和硬件资源来选择合适的缓存类型。
 
 28. 支持 ts 的安装命令:  npm install @babel/preset-typescript -D
 
