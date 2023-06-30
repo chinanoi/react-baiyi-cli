@@ -148,7 +148,8 @@ npm init -y
     ],
   },
 ```
-24. 安装 node-sass 和 sass-loader 处理 scss 文件:   npm install node-sass sass-loader -D
+24. 安装 sass-loader 处理 scss 文件:   npm install sass-loader -D
+有了sass-loader就不需要dart-sass或者sass了
 ```
    {
     test: /\.scss$/,

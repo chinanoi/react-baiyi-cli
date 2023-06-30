@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 const { isDev, PROJECT_PATH } = require('./constant');
+const path = require('path');
 
 module.exports = {
     entry: {
