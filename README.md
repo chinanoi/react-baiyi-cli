@@ -148,31 +148,6 @@ npm init -y
     ],
   },
 ```
-24. 安装 sass-loader 处理 scss 文件:   npm install sass-loader -D
-有了sass-loader就不需要dart-sass或者sass了
-```
-   {
-    test: /\.scss$/,
-      use: [
-        'style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            modules: false,
-            sourceMap: isDev,
-            importLoaders: 1, // 需要先被 sass-loader 处理，所以这里设置为 1
-          },
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: isDev,
-          },
-        },
-      ],
-    },
-```
-
 使用oneOf优化loader执行
 
 25. file-loader 或者 url-loader 处理本地资源文件:  npm install file-loader url-loader -D

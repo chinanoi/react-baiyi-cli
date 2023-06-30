@@ -1,5 +1,5 @@
 import React from 'react';
-import './LoadingGlobal.scss';
+import './LoadingGlobal.less';
 
 const LoadingGlobal = () => {
     return (

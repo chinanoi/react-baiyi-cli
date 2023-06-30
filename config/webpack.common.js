@@ -85,26 +85,6 @@ module.exports = {
                             },
                         ],
                     },
-                    {
-                        test: /\.scss$/,
-                        use: [
-                            'style-loader',
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    modules: true,
-                                    sourceMap: isDev,
-                                    importLoaders: 1, // 需要先被 sass-loader 处理，所以这里设置为 1
-                                },
-                            },
-                            {
-                                loader: 'sass-loader',
-                                options: {
-                                    sourceMap: isDev,
-                                },
-                            },
-                        ],
-                    },
                 ]
             },
             {
@@ -151,6 +131,7 @@ module.exports = {
         ],
     },
     plugins: [
+        new MiniCssExtractPlugin(),
         new CopyWebpackPlugin({
             patterns: [{
                 context: resolve(PROJECT_PATH, './public'),

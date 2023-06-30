@@ -28,7 +28,7 @@ declare module '*.png' {
     export default path;
 }
 
-declare module '*.module.scss' {
+declare module '*.module.less' {
     const classes: { readonly [key: string]: string; };
     export default classes;
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import styles from './LayOut.module.scss';
+import styles from './LayOut.module.less';
 import { globalState, increment, decrement } from 'Src/app/globalReducer';
 import { useSelector, useDispatch } from 'react-redux';
 
